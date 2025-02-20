@@ -12,8 +12,6 @@ COPY ./apache-config/sites-available/000-default.conf /usr/local/apache2/conf/ex
 
 COPY ./html /var/www/html/
 
-COPY ./certificates /etc/ssl/certs/
-
 COPY ./certificates/cert.pem /etc/ssl/certs/
 COPY ./certificates/privkey.pem /etc/ssl/private/
 COPY ./certificates/chain.pem /etc/ssl/certs/
