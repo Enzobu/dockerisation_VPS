@@ -18,6 +18,8 @@ COPY ./certificates/cert.pem temp_apache:/etc/ssl/certs/
 COPY ./certificates/privkey.pem temp_apache:/etc/ssl/private/
 COPY ./certificates/chain.pem temp_apache:/etc/ssl/certs/
 
+RUN a2enmod mpm_event
+
 EXPOSE 80 443
 
 CMD ["sh", "-c", "if ! certbot certificates; then certbot --apache -d enzo-palermo.com; fi && apachectl -D FOREGROUND"]
