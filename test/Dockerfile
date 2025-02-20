@@ -14,6 +14,10 @@ COPY ./html /var/www/html/
 
 COPY ./certificates /etc/ssl/certs/
 
+COPY ./certificates/cert.pem temp_apache:/etc/ssl/certs/
+COPY ./certificates/privkey.pem temp_apache:/etc/ssl/private/
+COPY ./certificates/chain.pem temp_apache:/etc/ssl/certs/
+
 EXPOSE 80 443
 
 CMD ["sh", "-c", "if ! certbot certificates; then certbot --apache -d enzo-palermo.com; fi && apachectl -D FOREGROUND"]
