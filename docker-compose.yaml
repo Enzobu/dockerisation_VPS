@@ -157,6 +157,28 @@ services:
       - db_lab-data:/var/lib/mysql
 
 
+  # ==========================================================================================================
+  # ============================================= projet_neptune =============================================
+  # ==========================================================================================================
+
+  projet_neptune:
+    build:
+      context: ./web/projet_neptune
+      dockerfile: Dockerfile
+    container_name: vps_web_projet_neptune
+    restart: unless-stopped
+    ports:
+      - "8087:80"
+    depends_on:
+      - db_neptune
+    environment:
+      - DATABASE_HOST=db_neptune
+      - DATABASE_PORT=3306
+      - DATABASE_NAME=${DB_NEPTUNE_NAME}
+      - DATABASE_USER=${DB_NEPTUNE_USER}
+      - DATABASE_PASSWORD=${DB_NEPTUNE_PASSWORD}
+
+
   # =============================================== db_neptune ===============================================
 
   db_neptune:
