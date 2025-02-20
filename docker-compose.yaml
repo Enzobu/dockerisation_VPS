@@ -21,6 +21,27 @@ services:
       PMA_ARBITRARY: 0
       PMA_HOSTS: db_lab, db_gmao, db_neptune
 
+  # ==========================================================================================================
+  # ================================================ api_gmao ================================================
+  # ==========================================================================================================
+
+  api_gmao:
+    build:
+      context: ./web/api_gmao
+      dockerfile: Dockerfile
+    container_name: vps_web_api_gmao
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    depends_on:
+      - db_gmao
+    environment:
+      - DATABASE_HOST=db_gmao
+      - DATABASE_PORT=3306
+      - DATABASE_NAME=${DB_GMAO_NAME}
+      - DATABASE_USER=${DB_GMAO_USER}
+      - DATABASE_PASSWORD=${DB_GMAO_PASSWORD}
+
 
   # ================================================ db_gmao =================================================
 
