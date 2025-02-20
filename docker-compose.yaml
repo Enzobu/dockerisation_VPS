@@ -1,0 +1,63 @@
+services:
+
+  # ================================================ db_gmao =================================================
+
+  db_gmao:
+    build:
+      context: ./db/mysql_gmao
+      dockerfile: Dockerfile
+    container_name: vps_db_mysql_gmao
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_GMAO_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_GMAO_NAME}
+      MYSQL_USER: ${DB_GMAO_USER}
+      MYSQL_PASSWORD: ${DB_GMAO_PASSWORD}
+      PMA_HOST: db_gmao
+    volumes:
+      - db_gmao-data:/var/lib/mysql
+
+
+  # ================================================= db_lab =================================================
+
+  db_lab:
+    build:
+      context: ./db/mysql_lab
+      dockerfile: Dockerfile
+    container_name: vps_db_mysql_lab
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_LAB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_LAB_NAME}
+      MYSQL_USER: ${DB_LAB_USER}
+      MYSQL_PASSWORD: ${DB_LAB_PASSWORD}
+      PMA_HOST: db_lab
+    volumes:
+      - db_lab-data:/var/lib/mysql
+
+
+  # =============================================== db_neptune ===============================================
+
+  db_neptune:
+    build:
+      context: ./db/mysql_neptune
+      dockerfile: Dockerfile
+    container_name: vps_db_mysql_neptune
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_NEPTUNE_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NEPTUNE_NAME}
+      MYSQL_USER: ${DB_NEPTUNE_USER}
+      MYSQL_PASSWORD: ${DB_NEPTUNE_PASSWORD}
+      PMA_HOST: db_neptune
+    volumes:
+      - db_neptune-data:/var/lib/mysql
+
+# ==========================================================================================================
+# ================================================ volumes =================================================
+# ==========================================================================================================
+
+volumes:
+  db_gmao-data:
+  db_lab-data:
+  db_neptune-data:
