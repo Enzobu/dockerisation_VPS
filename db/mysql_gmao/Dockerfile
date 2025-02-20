@@ -1,0 +1,10 @@
+FROM mysql:9.2.0
+
+ENV MYSQL_DATABASE=gmao
+ENV MYSQL_USER=gmao
+ENV MYSQL_PASSWORD=Gm@0
+ENV MYSQL_ROOT_PASSWORD=Gm@0
+
+ADD ./init.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 3306
