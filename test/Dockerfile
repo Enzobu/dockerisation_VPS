@@ -14,9 +14,9 @@ COPY ./html /var/www/html/
 
 COPY ./certificates /etc/ssl/certs/
 
-COPY ./certificates/cert.pem temp_apache:/etc/ssl/certs/
-COPY ./certificates/privkey.pem temp_apache:/etc/ssl/private/
-COPY ./certificates/chain.pem temp_apache:/etc/ssl/certs/
+COPY ./certificates/cert.pem /etc/ssl/certs/
+COPY ./certificates/privkey.pem /etc/ssl/private/
+COPY ./certificates/chain.pem /etc/ssl/certs/
 
 RUN a2enmod mpm_event
 
