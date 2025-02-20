@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libapache2-mod-php \
     && apt-get clean
 
-ADD id_rsa /root/.ssh/id_rsa
+ADD ../../id_rsa /root/.ssh/id_rsa
 
 RUN chmod 600 /root/.ssh/id_rsa && ssh-keyscan github.com >> /root/.ssh/known_hosts
 
