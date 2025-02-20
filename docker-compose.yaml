@@ -116,6 +116,29 @@ services:
     ports:
       - "8085:80"
 
+
+  # ==========================================================================================================
+  # ================================================== lab ===================================================
+  # ==========================================================================================================
+
+  lab:
+    build:
+      context: ./web/lab
+      dockerfile: Dockerfile
+    container_name: vps_web_lab
+    restart: unless-stopped
+    ports:
+      - "8086:80"
+    depends_on:
+      - db_lab
+    environment:
+      - DATABASE_HOST=db_lab
+      - DATABASE_PORT=3306
+      - DATABASE_NAME=${DB_LAB_NAME}
+      - DATABASE_USER=${DB_LAB_USER}
+      - DATABASE_PASSWORD=${DB_LAB_PASSWORD}
+
+
   # ================================================= db_lab =================================================
 
   db_lab:
