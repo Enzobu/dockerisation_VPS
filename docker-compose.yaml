@@ -1,5 +1,27 @@
 services:
 
+  # # ==========================================================================================================
+  # # =============================================== phpmyadmin ===============================================
+  # # ==========================================================================================================
+
+  phpmyadmin:
+    # image: phpmyadmin:5.2.2-apache
+    build:
+      context: ./phpmyadmin
+      dockerfile: Dockerfile
+    container_name: vps_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - db_lab
+      - db_gmao
+      - db_neptune
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOSTS: db_lab, db_gmao, db_neptune
+
+
   # ================================================ db_gmao =================================================
 
   db_gmao:
