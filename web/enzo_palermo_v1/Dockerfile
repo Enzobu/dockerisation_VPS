@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     opcache \
     && docker-php-ext-enable intl pdo_mysql opcache
 
-ADD ../../id_rsa /root/.ssh/id_rsa
+ADD ./id_rsa /root/.ssh/id_rsa
 
 RUN chmod 600 /root/.ssh/id_rsa && ssh-keyscan github.com >> /root/.ssh/known_hosts
 
