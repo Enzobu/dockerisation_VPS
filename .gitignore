@@ -1,2 +1,5 @@
 .env
 id_rsa
+/test/
+/test2/
+/test3/

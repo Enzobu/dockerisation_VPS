@@ -22,5 +22,5 @@ RUN a2enmod mpm_event
 
 EXPOSE 80 443
 
-CMD ["sh", "-c", "if ! certbot certificates; then certbot --apache -d enzo-palermo.com; fi && apachectl -D FOREGROUND"]
-# CMD ["tail", "-f", "/dev/null"]privkey.pem
+# CMD ["sh", "-c", "if ! certbot certificates; then certbot --apache -d enzo-palermo.com; fi && apachectl -D FOREGROUND"]
+CMD ["tail", "-f", "/dev/null"]privkey.pem
