@@ -178,10 +178,10 @@ services:
       - "8085:80"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.rule=Host(`enzo-palermo.com`)"
-      - "traefik.http.routers.entrypoints=websecure"
-      - "traefik.http.routers.tls=true"
-      - "traefik.http.routers.tls.certresolver=myresolver"
+      - "traefik.http.routers.html.rule=Host(`enzo-palermo.com`)"
+      - "traefik.http.routers.html.entrypoints=websecure"
+      - "traefik.http.routers.html.tls=true"
+      - "traefik.http.routers.html.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
