@@ -24,9 +24,9 @@ services:
       - "./letsencrypt:/letsencrypt"
 
 
-  # # ==========================================================================================================
-  # # =============================================== phpmyadmin ===============================================
-  # # ==========================================================================================================
+  # ==========================================================================================================
+  # =============================================== phpmyadmin ===============================================
+  # ==========================================================================================================
 
   # phpmyadmin.enzo-palermo.com
   phpmyadmin:
@@ -105,20 +105,20 @@ services:
   # ==========================================================================================================
 
   # enzo-palermo-v1.enzo-palermo.com
-  enzo_palermo_v1:
-    build:
-      context: ./web/enzo_palermo_v1
-      dockerfile: Dockerfile
-    container_name: vps_web_enzo_palermo_v1
-    restart: unless-stopped
-    ports:
-      - "8082:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.enzo-palermo-v1.rule=Host(`enzo-palermo-v1.enzo-palermo.com`)"
-      - "traefik.http.routers.enzo-palermo-v1.entrypoints=websecure"
-      - "traefik.http.routers.enzo-palermo-v1.tls=true"
-      - "traefik.http.routers.enzo-palermo-v1.tls.certresolver=myresolver"
+  # enzo_palermo_v1:
+  #   build:
+  #     context: ./web/enzo_palermo_v1
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_enzo_palermo_v1
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8082:80"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.enzo-palermo-v1.rule=Host(`enzo-palermo-v1.enzo-palermo.com`)"
+  #     - "traefik.http.routers.enzo-palermo-v1.entrypoints=websecure"
+  #     - "traefik.http.routers.enzo-palermo-v1.tls=true"
+  #     - "traefik.http.routers.enzo-palermo-v1.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -147,20 +147,20 @@ services:
   # ==========================================================================================================
 
   # hi-mix.enzo-palermo.com
-  hi_mix:
-    build:
-      context: ./web/hi-mix
-      dockerfile: Dockerfile
-    container_name: vps_web_hi_mix
-    restart: unless-stopped
-    ports:
-      - "8084:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hi-mix.rule=Host(`hi-mix.enzo-palermo.com`)"
-      - "traefik.http.routers.hi-mix.entrypoints=websecure"
-      - "traefik.http.routers.hi-mix.tls=true"
-      - "traefik.http.routers.hi-mix.tls.certresolver=myresolver"
+  # hi_mix:
+  #   build:
+  #     context: ./web/hi-mix
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_hi_mix
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8084:80"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.hi-mix.rule=Host(`hi-mix.enzo-palermo.com`)"
+  #     - "traefik.http.routers.hi-mix.entrypoints=websecure"
+  #     - "traefik.http.routers.hi-mix.tls=true"
+  #     - "traefik.http.routers.hi-mix.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -189,46 +189,46 @@ services:
   # ==========================================================================================================
 
   # lab.enzo-palermo.com
-  lab:
-    build:
-      context: ./web/lab
-      dockerfile: Dockerfile
-    container_name: vps_web_lab
-    restart: unless-stopped
-    ports:
-      - "8086:80"
-    depends_on:
-      - db_lab
-    environment:
-      - DATABASE_HOST=db_lab
-      - DATABASE_PORT=3306
-      - DATABASE_NAME=${DB_LAB_NAME}
-      - DATABASE_USER=${DB_LAB_USER}
-      - DATABASE_PASSWORD=${DB_LAB_PASSWORD}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.lab.rule=Host(`lab.enzo-palermo.com`)"
-      - "traefik.http.routers.lab.entrypoints=websecure"
-      - "traefik.http.routers.lab.tls=true"
-      - "traefik.http.routers.lab.tls.certresolver=myresolver"
+  # lab:
+  #   build:
+  #     context: ./web/lab
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_lab
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8086:80"
+  #   depends_on:
+  #     - db_lab
+  #   environment:
+  #     - DATABASE_HOST=db_lab
+  #     - DATABASE_PORT=3306
+  #     - DATABASE_NAME=${DB_LAB_NAME}
+  #     - DATABASE_USER=${DB_LAB_USER}
+  #     - DATABASE_PASSWORD=${DB_LAB_PASSWORD}
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.lab.rule=Host(`lab.enzo-palermo.com`)"
+  #     - "traefik.http.routers.lab.entrypoints=websecure"
+  #     - "traefik.http.routers.lab.tls=true"
+  #     - "traefik.http.routers.lab.tls.certresolver=myresolver"
 
 
   # ================================================= db_lab =================================================
 
-  db_lab:
-    build:
-      context: ./db/mysql_lab
-      dockerfile: Dockerfile
-    container_name: vps_db_mysql_lab
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_LAB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_LAB_NAME}
-      MYSQL_USER: ${DB_LAB_USER}
-      MYSQL_PASSWORD: ${DB_LAB_PASSWORD}
-      PMA_HOST: db_lab
-    volumes:
-      - db_lab-data:/var/lib/mysql
+  # db_lab:
+  #   build:
+  #     context: ./db/mysql_lab
+  #     dockerfile: Dockerfile
+  #   container_name: vps_db_mysql_lab
+  #   restart: unless-stopped
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DB_LAB_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${DB_LAB_NAME}
+  #     MYSQL_USER: ${DB_LAB_USER}
+  #     MYSQL_PASSWORD: ${DB_LAB_PASSWORD}
+  #     PMA_HOST: db_lab
+  #   volumes:
+  #     - db_lab-data:/var/lib/mysql
 
 
   # ==========================================================================================================
@@ -236,46 +236,46 @@ services:
   # ==========================================================================================================
 
   # neptune.enzo-palermo.com
-  projet_neptune:
-    build:
-      context: ./web/projet_neptune
-      dockerfile: Dockerfile
-    container_name: vps_web_projet_neptune
-    restart: unless-stopped
-    ports:
-      - "8087:80"
-    depends_on:
-      - db_neptune
-    environment:
-      - DATABASE_HOST=db_neptune
-      - DATABASE_PORT=3306
-      - DATABASE_NAME=${DB_NEPTUNE_NAME}
-      - DATABASE_USER=${DB_NEPTUNE_USER}
-      - DATABASE_PASSWORD=${DB_NEPTUNE_PASSWORD}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.neptune.rule=Host(`neptune.enzo-palermo.com`)"
-      - "traefik.http.routers.neptune.entrypoints=websecure"
-      - "traefik.http.routers.neptune.tls=true"
-      - "traefik.http.routers.neptune.tls.certresolver=myresolver"
+  # projet_neptune:
+  #   build:
+  #     context: ./web/projet_neptune
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_projet_neptune
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8087:80"
+  #   depends_on:
+  #     - db_neptune
+  #   environment:
+  #     - DATABASE_HOST=db_neptune
+  #     - DATABASE_PORT=3306
+  #     - DATABASE_NAME=${DB_NEPTUNE_NAME}
+  #     - DATABASE_USER=${DB_NEPTUNE_USER}
+  #     - DATABASE_PASSWORD=${DB_NEPTUNE_PASSWORD}
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.neptune.rule=Host(`neptune.enzo-palermo.com`)"
+  #     - "traefik.http.routers.neptune.entrypoints=websecure"
+  #     - "traefik.http.routers.neptune.tls=true"
+  #     - "traefik.http.routers.neptune.tls.certresolver=myresolver"
 
 
   # =============================================== db_neptune ===============================================
 
-  db_neptune:
-    build:
-      context: ./db/mysql_neptune
-      dockerfile: Dockerfile
-    container_name: vps_db_mysql_neptune
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_NEPTUNE_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_NEPTUNE_NAME}
-      MYSQL_USER: ${DB_NEPTUNE_USER}
-      MYSQL_PASSWORD: ${DB_NEPTUNE_PASSWORD}
-      PMA_HOST: db_neptune
-    volumes:
-      - db_neptune-data:/var/lib/mysql
+  # db_neptune:
+  #   build:
+  #     context: ./db/mysql_neptune
+  #     dockerfile: Dockerfile
+  #   container_name: vps_db_mysql_neptune
+  #   restart: unless-stopped
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DB_NEPTUNE_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${DB_NEPTUNE_NAME}
+  #     MYSQL_USER: ${DB_NEPTUNE_USER}
+  #     MYSQL_PASSWORD: ${DB_NEPTUNE_PASSWORD}
+  #     PMA_HOST: db_neptune
+  #   volumes:
+  #     - db_neptune-data:/var/lib/mysql
 
 
   # ==========================================================================================================
@@ -283,20 +283,20 @@ services:
   # ==========================================================================================================
 
   # stage-sn2.enzo-palermo.com
-  stage_sn2:
-    build:
-      context: ./web/stage_sn2
-      dockerfile: Dockerfile
-    container_name: vps_web_stage_sn2
-    restart: unless-stopped
-    ports:
-      - "8088:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.stage-sn2.rule=Host(`stage-sn2.enzo-palermo.com`)"
-      - "traefik.http.routers.stage-sn2.entrypoints=websecure"
-      - "traefik.http.routers.stage-sn2.tls=true"
-      - "traefik.http.routers.stage-sn2.tls.certresolver=myresolver"
+  # stage_sn2:
+  #   build:
+  #     context: ./web/stage_sn2
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_stage_sn2
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8088:80"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.stage-sn2.rule=Host(`stage-sn2.enzo-palermo.com`)"
+  #     - "traefik.http.routers.stage-sn2.entrypoints=websecure"
+  #     - "traefik.http.routers.stage-sn2.tls=true"
+  #     - "traefik.http.routers.stage-sn2.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -304,20 +304,20 @@ services:
   # ==========================================================================================================
 
   # workshop-b3.enzo-palermo.com
-  workshop_b3:
-    build:
-      context: ./web/workshop_b3
-      dockerfile: Dockerfile
-    container_name: vps_web_workshop_b3
-    restart: unless-stopped
-    ports:
-      - "8089:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.workshop-b3.rule=Host(`workshop-b3.enzo-palermo.com`)"
-      - "traefik.http.routers.workshop-b3.entrypoints=websecure"
-      - "traefik.http.routers.workshop-b3.tls=true"
-      - "traefik.http.routers.workshop-b3.tls.certresolver=myresolver"
+  # workshop_b3:
+  #   build:
+  #     context: ./web/workshop_b3
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_workshop_b3
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8089:80"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.workshop-b3.rule=Host(`workshop-b3.enzo-palermo.com`)"
+  #     - "traefik.http.routers.workshop-b3.entrypoints=websecure"
+  #     - "traefik.http.routers.workshop-b3.tls=true"
+  #     - "traefik.http.routers.workshop-b3.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -325,20 +325,20 @@ services:
   # ==========================================================================================================
 
   # workshop-sn1.enzo-palermo.com
-  workshop_sn1:
-    build:
-      context: ./web/workshop_sn1
-      dockerfile: Dockerfile
-    container_name: vps_web_workshop_sn1
-    restart: unless-stopped
-    ports:
-      - "8090:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.workshop_sn1.rule=Host(`workshop_sn1.enzo-palermo.com`)"
-      - "traefik.http.routers.workshop_sn1.entrypoints=websecure"
-      - "traefik.http.routers.workshop_sn1.tls=true"
-      - "traefik.http.routers.workshop_sn1.tls.certresolver=myresolver"
+  # workshop_sn1:
+  #   build:
+  #     context: ./web/workshop_sn1
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_workshop_sn1
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8090:80"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.workshop_sn1.rule=Host(`workshop_sn1.enzo-palermo.com`)"
+  #     - "traefik.http.routers.workshop_sn1.entrypoints=websecure"
+  #     - "traefik.http.routers.workshop_sn1.tls=true"
+  #     - "traefik.http.routers.workshop_sn1.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -346,20 +346,20 @@ services:
   # ==========================================================================================================
 
   # workshop-sn2.enzo-palermo.com
-  workshop_sn2:
-    build:
-      context: ./web/workshop_sn2
-      dockerfile: Dockerfile
-    container_name: vps_web_workshop_sn2
-    restart: unless-stopped
-    ports:
-      - "8091:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.workshop-sn2.rule=Host(`workshop-sn2.enzo-palermo.com`)"
-      - "traefik.http.routers.workshop-sn2.entrypoints=websecure"
-      - "traefik.http.routers.workshop-sn2.tls=true"
-      - "traefik.http.routers.workshop-sn2.tls.certresolver=myresolver"
+  # workshop_sn2:
+  #   build:
+  #     context: ./web/workshop_sn2
+  #     dockerfile: Dockerfile
+  #   container_name: vps_web_workshop_sn2
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8091:80"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.workshop-sn2.rule=Host(`workshop-sn2.enzo-palermo.com`)"
+  #     - "traefik.http.routers.workshop-sn2.entrypoints=websecure"
+  #     - "traefik.http.routers.workshop-sn2.tls=true"
+  #     - "traefik.http.routers.workshop-sn2.tls.certresolver=myresolver"
 
 
 # ==========================================================================================================
@@ -368,5 +368,5 @@ services:
 
 volumes:
   db_gmao-data:
-  db_lab-data:
-  db_neptune-data:
+  # db_lab-data:
+  # db_neptune-data:
