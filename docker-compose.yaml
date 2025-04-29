@@ -3,25 +3,25 @@ services:
   # ================================================ Traefik =================================================
   # ==========================================================================================================
 
-  traefik:
-    image: traefik:v2.9
-    container_name: traefik
-    restart: unless-stopped
-    command:
-      - "--api.dashboard=true"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=contact@enzo-palermo.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./letsencrypt:/letsencrypt"
+  # traefik:
+  #   image: traefik:v2.9
+  #   container_name: traefik
+  #   restart: unless-stopped
+  #   command:
+  #     - "--api.dashboard=true"
+  #     - "--entrypoints.web.address=:80"
+  #     - "--entrypoints.websecure.address=:443"
+  #     - "--providers.docker=true"
+  #     - "--providers.docker.exposedbydefault=false"
+  #     - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+  #     - "--certificatesresolvers.myresolver.acme.email=contact@enzo-palermo.com"
+  #     - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  #     - "./letsencrypt:/letsencrypt"
 
 
   # ==========================================================================================================
@@ -45,12 +45,12 @@ services:
     environment:
       PMA_ARBITRARY: 0
       PMA_HOSTS: db_lab, db_gmao, db_neptune
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.enzo-palermo.com`)"
-      - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
-      - "traefik.http.routers.phpmyadmin.tls=true"
-      - "traefik.http.routers.phpmyadmin.tls.certresolver=myresolver"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.enzo-palermo.com`)"
+    #   - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+    #   - "traefik.http.routers.phpmyadmin.tls=true"
+    #   - "traefik.http.routers.phpmyadmin.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -74,12 +74,12 @@ services:
       - DATABASE_NAME=${DB_GMAO_NAME}
       - DATABASE_USER=${DB_GMAO_USER}
       - DATABASE_PASSWORD=${DB_GMAO_PASSWORD}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.api_gmao.rule=Host(`api.gmao.enzo-palermo.com`)"
-      - "traefik.http.routers.api_gmao.entrypoints=websecure"
-      - "traefik.http.routers.api_gmao.tls=true"
-      - "traefik.http.routers.api_gmao.tls.certresolver=myresolver"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.api_gmao.rule=Host(`api.gmao.enzo-palermo.com`)"
+    #   - "traefik.http.routers.api_gmao.entrypoints=websecure"
+    #   - "traefik.http.routers.api_gmao.tls=true"
+    #   - "traefik.http.routers.api_gmao.tls.certresolver=myresolver"
 
 
   # ================================================ db_gmao =================================================
@@ -147,20 +147,20 @@ services:
   # ==========================================================================================================
 
   # hi-mix.enzo-palermo.com
-  # hi_mix:
-  #   build:
-  #     context: ./web/hi-mix
-  #     dockerfile: Dockerfile
-  #   container_name: vps_web_hi_mix
-  #   restart: unless-stopped
-  #   ports:
-  #     - "8084:80"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.hi-mix.rule=Host(`hi-mix.enzo-palermo.com`)"
-  #     - "traefik.http.routers.hi-mix.entrypoints=websecure"
-  #     - "traefik.http.routers.hi-mix.tls=true"
-  #     - "traefik.http.routers.hi-mix.tls.certresolver=myresolver"
+  hi_mix:
+    build:
+      context: ./web/hi-mix
+      dockerfile: Dockerfile
+    container_name: vps_web_hi_mix
+    restart: unless-stopped
+    ports:
+      - "8084:80"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.hi-mix.rule=Host(`hi-mix.enzo-palermo.com`)"
+    #   - "traefik.http.routers.hi-mix.entrypoints=websecure"
+    #   - "traefik.http.routers.hi-mix.tls=true"
+    #   - "traefik.http.routers.hi-mix.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
@@ -176,12 +176,12 @@ services:
     restart: unless-stopped
     ports:
       - "8085:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.html.rule=Host(`enzo-palermo.com`)"
-      - "traefik.http.routers.html.entrypoints=websecure"
-      - "traefik.http.routers.html.tls=true"
-      - "traefik.http.routers.html.tls.certresolver=myresolver"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.html.rule=Host(`enzo-palermo.com`)"
+    #   - "traefik.http.routers.html.entrypoints=websecure"
+    #   - "traefik.http.routers.html.tls=true"
+    #   - "traefik.http.routers.html.tls.certresolver=myresolver"
 
 
   # ==========================================================================================================
