@@ -39,9 +39,9 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - db_lab
+      # - db_lab
       - db_gmao
-      - db_neptune
+      # - db_neptune
     environment:
       PMA_ARBITRARY: 0
       PMA_HOSTS: db_lab, db_gmao, db_neptune
